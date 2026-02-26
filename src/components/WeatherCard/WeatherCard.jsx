@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import "./WeatherCard.css";
+import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 
 import daySunny from "../../images/day-sunny.png";
 import dayCloudy from "../../images/day-cloudy.png";
@@ -34,8 +36,10 @@ const weatherImages = {
 };
 
 function WeatherCard({ weatherData }) {
+  const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   const timeOfDay = weatherData.timeOfDay || "day";
   const weatherType = weatherData.weatherType || "sunny";
+  const currentTemperature = weatherData.temperature[currentTemperatureUnit];
 
   const bgImage =
     weatherImages?.[timeOfDay]?.[weatherType] || weatherImages.day.sunny;
@@ -45,7 +49,7 @@ function WeatherCard({ weatherData }) {
       className="weather-card"
       style={{ backgroundImage: `url(${bgImage})` }}
     >
-      <p className="weather-card__temp">{weatherData.temperature}°</p>
+      <p className="weather-card__temp">{currentTemperature}&deg;</p>
     </section>
   );
 }

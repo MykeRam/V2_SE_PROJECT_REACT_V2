@@ -25,9 +25,13 @@ function getWeatherType(weatherMain) {
 }
 
 function filterWeatherData(data) {
-  const temperature = Math.round(data.main.temp);
+  const tempF = Math.round(data.main.temp);
+  const temperature = {
+    F: tempF,
+    C: Math.round((tempF - 32) * (5 / 9)),
+  };
   const location = data.name;
-  const type = getWeatherCondition(temperature);
+  const type = getWeatherCondition(tempF);
 
   const sunrise = data.sys.sunrise;
   const sunset = data.sys.sunset;

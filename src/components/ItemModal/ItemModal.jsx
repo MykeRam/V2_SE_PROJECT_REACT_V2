@@ -1,7 +1,7 @@
 import "./ItemModal.css";
 import useModalClose from "../../hooks/useModalClose";
 
-function ItemModal({ isOpen, card, onClose }) {
+function ItemModal({ isOpen, card, onDeleteClick, onClose }) {
   useModalClose(isOpen, onClose);
 
   if (!card) return null;
@@ -17,7 +17,16 @@ function ItemModal({ isOpen, card, onClose }) {
         />
         <img className="modal__image" src={card.link} alt={card.name} />
         <div className="modal__caption">
-          <p className="modal__title">{card.name}</p>
+          <div className="modal__caption-row">
+            <p className="modal__title">{card.name}</p>
+            <button
+              className="modal__delete-button"
+              type="button"
+              onClick={() => onDeleteClick(card)}
+            >
+              Delete item
+            </button>
+          </div>
           <p className="modal__weather">Weather: {card.weather}</p>
         </div>
       </div>

@@ -1,0 +1,26 @@
+.sidebar {
+  width: 230px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.sidebar__avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.sidebar__name {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+@media screen and (max-width: 900px) {
+  .sidebar {
+    width: 100%;
+  }
+}
