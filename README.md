@@ -45,7 +45,6 @@ The project is organized using a component-based structure:
 
 <img width="3400" height="1740" alt="143B653D-921D-4E3C-9AA2-7E5755F2CAC8" src="https://github.com/user-attachments/assets/d9f7df00-5ac3-4cbb-a47c-3ffc0b46b54e" />
 
-
 ---
 
 ## Demo Video

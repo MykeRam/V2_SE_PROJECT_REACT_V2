@@ -1,15 +1,14 @@
 .main {
-  margin-top: auto;
-  padding: 16px 40px 0;
+  padding: 0 40px 0;
 }
 
 .main__title {
-  margin: 16px 0;
+  margin: 0 0 34px;
   font-size: 20px;
 }
 
 .main__section {
-  margin-top: 16px;
+  margin-top: 40px;
 }
 
 .main__items {
@@ -31,7 +30,7 @@
 
 @media screen and (max-width: 1280px) {
   .main {
-    padding: 16px 24px 0;
+    padding: 0 24px 0;
   }
 
   .main__items {
@@ -47,7 +46,7 @@
 
 @media screen and (max-width: 768px) {
   .main {
-    padding: 16px;
+    padding: 0 16px;
   }
 
   .main__items {

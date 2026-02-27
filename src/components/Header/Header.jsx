@@ -1,11 +1,8 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import "./Header.css";
 
 function Header({ weatherData, onAddClick, user }) {
-  const { pathname } = useLocation();
-  const profilePath = pathname === "/profile" ? "/" : "/profile";
-
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
@@ -13,6 +10,7 @@ function Header({ weatherData, onAddClick, user }) {
 
   return (
     <header className="header">
+      <h1 className="visually-hidden">What to Wear</h1>
       <div className="header__left">
         <Link className="header__logo-link" to="/">
           <div className="header__logo">wtwr&deg;</div>
@@ -33,7 +31,7 @@ function Header({ weatherData, onAddClick, user }) {
           + Add clothes
         </button>
 
-        <Link className="header__profile-link" to={profilePath}>
+        <Link className="header__profile-link" to="/profile">
           <p className="header__username">{user.name}</p>
           <img className="header__avatar" src={user.avatar} alt={user.name} />
         </Link>

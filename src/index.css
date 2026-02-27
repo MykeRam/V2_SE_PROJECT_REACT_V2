@@ -5,9 +5,19 @@
   box-sizing: border-box;
 }
 
+:root {
+  --font-family-ui: "Cabinet Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --ui-text-style-2-size: 16px;
+  --ui-text-style-2-line-height: 20px;
+  --ui-text-style-2-weight: 500;
+}
+
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: var(--font-family-ui);
+  font-size: var(--ui-text-style-2-size);
+  line-height: var(--ui-text-style-2-line-height);
+  font-weight: var(--ui-text-style-2-weight);
   color: #000;
   background: #f3f3f3;
 }
@@ -15,6 +25,21 @@ body {
 .app {
   width: 100%;
   min-height: 100vh;
+  max-width: 1360px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  border: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(100%);
+  white-space: nowrap;
 }

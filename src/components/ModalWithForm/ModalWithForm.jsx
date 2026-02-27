@@ -14,7 +14,9 @@ function ModalWithForm({
   useModalClose(isOpen, onClose);
 
   return (
-    <div className={`modal modal_type_${name} ${isOpen ? "modal_is-opened" : ""}`}>
+    <div
+      className={`modal modal_type_${name} ${isOpen ? "modal_is-opened" : ""}`}
+    >
       <div className="modal__content">
         <button
           className="modal__close"

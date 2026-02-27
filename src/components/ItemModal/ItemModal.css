@@ -1,47 +1,89 @@
-.modal__image {
-  width: 100%;
-  height: 260px;
-  object-fit: contain;
-  background: #eee;
-  border-radius: 10px;
+.modal_type_preview .modal__content {
+  width: 498px;
+  max-width: calc(100% - 32px);
+  padding: 0;
+  border-radius: 16px;
+  overflow: hidden;
 }
 
-.modal__caption {
-  margin-top: 12px;
+.modal_type_preview .modal__close {
+  top: 12px;
+  right: 12px;
+  width: 24px;
+  height: 24px;
+  background: transparent;
+  border-radius: 0;
+  z-index: 1;
 }
 
-.modal__caption-row {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.modal__title {
-  margin: 0;
+.modal_type_preview .modal__close::before {
+  content: "\00D7";
+  color: #fff;
+  font-size: 18px;
+  line-height: 24px;
   font-weight: 700;
 }
 
-.modal__weather {
-  margin: 6px 0 0;
+.modal_type_preview .modal__image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
 }
 
-.modal__delete-button {
+.modal_type_preview .modal__caption {
+  padding: 20px 32px 24px;
+}
+
+.modal_type_preview .modal__caption-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.modal_type_preview .modal__title {
+  margin: 0;
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.modal_type_preview .modal__weather {
+  margin: 12px 0 0;
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.modal_type_preview .modal__delete-button {
   border: none;
   background: transparent;
   padding: 0;
   margin: 0;
-  font-size: 14px;
-  font-weight: 700;
+  font-size: 20px;
   line-height: 1.2;
+  font-weight: 700;
   color: #ff4d00;
   cursor: pointer;
 }
 
+.modal_type_preview .modal__delete-button:hover {
+  opacity: 0.75;
+}
+
 @media screen and (max-width: 480px) {
-  .modal__content {
-    width: calc(100% - 32px);
-    margin: 0 16px;
+  .modal_type_preview .modal__content {
+    max-width: calc(100% - 16px);
+  }
+
+  .modal_type_preview .modal__caption {
     padding: 16px;
+  }
+
+  .modal_type_preview .modal__title,
+  .modal_type_preview .modal__weather,
+  .modal_type_preview .modal__delete-button {
+    font-size: 18px;
   }
 }

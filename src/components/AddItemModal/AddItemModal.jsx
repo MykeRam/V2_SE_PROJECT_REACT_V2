@@ -1,20 +1,46 @@
+import { useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import useForm from "../../hooks/useForm";
 import "./AddItemModal.css";
 
-function AddItemModal({ isOpen, onAddItem, onClose }) {
-  const { values, handleChange, resetForm } = useForm({
-    name: "",
-    link: "",
-    weather: "hot",
-  });
+const INITIAL_FORM_VALUES = {
+  name: "",
+  link: "",
+  weather: "",
+};
 
-  const isValid = values.name.trim() && values.link.trim() && values.weather;
+const WEATHER_TYPES = ["hot", "warm", "cold"];
+
+function isValidImageUrl(url) {
+  try {
+    const parsedUrl = new URL(url);
+    return parsedUrl.protocol === "http:" || parsedUrl.protocol === "https:";
+  } catch {
+    return false;
+  }
+}
+
+function AddItemModal({ isOpen, onAddItem, onClose }) {
+  const { values, handleChange, resetForm } = useForm(INITIAL_FORM_VALUES);
+
+  useEffect(() => {
+    if (isOpen) {
+      resetForm(INITIAL_FORM_VALUES);
+    }
+  }, [isOpen, resetForm]);
+
+  const trimmedName = values.name.trim();
+  const trimmedLink = values.link.trim();
+
+  const isNameValid = trimmedName.length > 0;
+  const isLinkValid = isValidImageUrl(trimmedLink);
+  const isWeatherValid = WEATHER_TYPES.includes(values.weather);
+  const isValid = isNameValid && isLinkValid && isWeatherValid;
 
   function handleSubmit(event) {
     event.preventDefault();
     if (!isValid) return;
-    onAddItem(values, resetForm);
+    onAddItem({ ...values, name: trimmedName, link: trimmedLink }, resetForm);
   }
 
   return (
@@ -49,6 +75,7 @@ function AddItemModal({ isOpen, onAddItem, onClose }) {
           placeholder="Image URL"
           value={values.link}
           onChange={handleChange}
+          pattern="https?://.+"
           required
         />
       </label>
@@ -64,6 +91,7 @@ function AddItemModal({ isOpen, onAddItem, onClose }) {
             value="hot"
             checked={values.weather === "hot"}
             onChange={handleChange}
+            required
           />
           Hot
         </label>

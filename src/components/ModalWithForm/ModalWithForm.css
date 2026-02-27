@@ -33,17 +33,18 @@
   right: 12px;
   width: 32px;
   height: 32px;
-  cursor: pointer;
-}
-
-.modal__close {
   border: none;
   background: #eee;
   border-radius: 50%;
+  cursor: pointer;
+}
+
+.modal__close:hover {
+  opacity: 0.75;
 }
 
 .modal__close::before {
-  content: "✕";
+  content: "\00D7";
   display: block;
   font-size: 16px;
   line-height: 32px;

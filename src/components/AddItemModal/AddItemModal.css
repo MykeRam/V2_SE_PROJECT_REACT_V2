@@ -48,7 +48,7 @@
 
 .add-item__legend {
   padding: 0;
-  margin: 0 0 6px;
+  margin: 0 0 12px;
   font-size: 16px;
   font-weight: 700;
   color: #000;
@@ -85,6 +85,7 @@
   color: #fff;
   background: #000;
   cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
 .modal_type_add-garment .modal__submit:disabled {
@@ -94,6 +95,10 @@
 
 .modal_type_add-garment .modal__submit {
   justify-self: start;
+}
+
+.modal_type_add-garment .modal__submit:enabled:hover {
+  background: #545454;
 }
 
 @media screen and (max-width: 520px) {

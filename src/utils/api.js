@@ -1,16 +1,49 @@
-function addItem(itemData) {
-  const newItem = {
-    _id: Date.now(),
-    name: itemData.name,
-    weather: itemData.weather,
-    link: itemData.link,
-  };
+const BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:3001";
 
-  return Promise.resolve(newItem);
+function checkResponse(res) {
+  if (!res.ok) {
+    return Promise.reject(new Error(`Request failed: ${res.status}`));
+  }
+
+  return res.json();
+}
+
+function normalizeItem(item) {
+  return { ...item, _id: item._id ?? item.id };
+}
+
+function getItems() {
+  return fetch(`${BASE_URL}/items`)
+    .then(checkResponse)
+    .then((items) => items.map(normalizeItem));
+}
+
+function addItem(itemData) {
+  return fetch(`${BASE_URL}/items`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      name: itemData.name,
+      weather: itemData.weather,
+      link: itemData.link,
+    }),
+  })
+    .then(checkResponse)
+    .then(normalizeItem);
 }
 
 function deleteItem(itemId) {
-  return Promise.resolve(itemId);
+  return fetch(`${BASE_URL}/items/${itemId}`, {
+    method: "DELETE",
+  }).then((res) => {
+    if (!res.ok) {
+      return Promise.reject(new Error(`Request failed: ${res.status}`));
+    }
+
+    return itemId;
+  });
 }
 
-export { addItem, deleteItem };
+export { getItems, addItem, deleteItem };

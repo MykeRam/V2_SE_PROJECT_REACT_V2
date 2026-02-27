@@ -1,16 +1,19 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 function useForm(initialValues) {
   const [values, setValues] = useState(initialValues);
 
-  function handleChange(event) {
+  const handleChange = useCallback((event) => {
     const { name, value } = event.target;
     setValues((prevValues) => ({ ...prevValues, [name]: value }));
-  }
+  }, []);
 
-  function resetForm(nextValues = initialValues) {
-    setValues(nextValues);
-  }
+  const resetForm = useCallback(
+    (nextValues = initialValues) => {
+      setValues(nextValues);
+    },
+    [initialValues],
+  );
 
   return { values, handleChange, resetForm };
 }
