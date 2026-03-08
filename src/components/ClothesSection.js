@@ -1,1 +1,1 @@
-export { default } from "./ClothesSection/ClothesSection";
+export { default as ClothesSection } from "./ClothesSection/ClothesSection";
