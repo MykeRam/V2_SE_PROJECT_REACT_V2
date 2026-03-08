@@ -50,4 +50,4 @@ function deleteItem(itemId) {
   });
 }
 
-export { getItems, addItem, deleteItem };
+export { checkResponse, getItems, addItem, deleteItem };

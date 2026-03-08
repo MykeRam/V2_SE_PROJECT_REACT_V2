@@ -1,9 +1,5 @@
 import { apiKey, coordinates } from "./constants";
-
-function checkResponse(res) {
-  if (res.ok) return res.json();
-  return Promise.reject(`Error ${res.status}`);
-}
+import { checkResponse } from "./api";
 
 function getWeatherCondition(tempF) {
   if (tempF >= 86) return "hot";
