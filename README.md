@@ -49,14 +49,14 @@ The project is organized using a component-based structure:
 
 ## Demo Video
 
-> _(Optional)_  
-> A short demo video can be added here if desired.
+https://drive.google.com/file/d/1pckEEI9oSwydi9T9UUqyeMLUNgQ7gxQm/view?usp=sharing
 
 ---
 
-## Deployment
-
-The project can be built and previewed locally using:
+## Project Pitch Video
+ 
+ Check out https://drive.google.com/file/d/1pckEEI9oSwydi9T9UUqyeMLUNgQ7gxQm/view?usp=sharing, where I describe my 
+ project and some challenges I faced while building it.
 
 ```bash
 npm run build
