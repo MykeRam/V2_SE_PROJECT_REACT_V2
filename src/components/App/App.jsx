@@ -32,7 +32,12 @@ function App() {
         setClothingItems(items);
       })
       .catch(() => {
-        setClothingItems(defaultClothingItems);
+        setClothingItems(
+          defaultClothingItems.map((item) => ({
+            ...item,
+            imageUrl: item.imageUrl ?? item.link,
+          })),
+        );
       });
   }, []);
 

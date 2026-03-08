@@ -13,7 +13,6 @@ function normalizeItem(item) {
     ...item,
     _id: item._id ?? item.id,
     imageUrl: item.imageUrl ?? item.link,
-    link: item.link ?? item.imageUrl,
   };
 }
 
