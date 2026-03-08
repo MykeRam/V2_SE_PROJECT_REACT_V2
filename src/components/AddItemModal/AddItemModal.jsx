@@ -5,7 +5,7 @@ import "./AddItemModal.css";
 
 const INITIAL_FORM_VALUES = {
   name: "",
-  link: "",
+  imageUrl: "",
   weather: "",
 };
 
@@ -30,17 +30,20 @@ function AddItemModal({ isOpen, onAddItem, onClose }) {
   }, [isOpen, resetForm]);
 
   const trimmedName = values.name.trim();
-  const trimmedLink = values.link.trim();
+  const trimmedImageUrl = values.imageUrl.trim();
 
   const isNameValid = trimmedName.length > 0;
-  const isLinkValid = isValidImageUrl(trimmedLink);
+  const isImageUrlValid = isValidImageUrl(trimmedImageUrl);
   const isWeatherValid = WEATHER_TYPES.includes(values.weather);
-  const isValid = isNameValid && isLinkValid && isWeatherValid;
+  const isValid = isNameValid && isImageUrlValid && isWeatherValid;
 
   function handleSubmit(event) {
     event.preventDefault();
     if (!isValid) return;
-    onAddItem({ ...values, name: trimmedName, link: trimmedLink }, resetForm);
+    onAddItem(
+      { ...values, name: trimmedName, imageUrl: trimmedImageUrl },
+      resetForm,
+    );
   }
 
   return (
@@ -71,9 +74,9 @@ function AddItemModal({ isOpen, onAddItem, onClose }) {
         <input
           className="add-item__input"
           type="url"
-          name="link"
+          name="imageUrl"
           placeholder="Image URL"
-          value={values.link}
+          value={values.imageUrl}
           onChange={handleChange}
           pattern="https?://.+"
           required

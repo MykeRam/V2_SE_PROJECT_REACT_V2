@@ -9,7 +9,12 @@ function checkResponse(res) {
 }
 
 function normalizeItem(item) {
-  return { ...item, _id: item._id ?? item.id };
+  return {
+    ...item,
+    _id: item._id ?? item.id,
+    imageUrl: item.imageUrl ?? item.link,
+    link: item.link ?? item.imageUrl,
+  };
 }
 
 function getItems() {
@@ -27,7 +32,7 @@ function addItem(itemData) {
     body: JSON.stringify({
       name: itemData.name,
       weather: itemData.weather,
-      link: itemData.link,
+      imageUrl: itemData.imageUrl,
     }),
   })
     .then(checkResponse)
