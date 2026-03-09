@@ -1,7 +1,7 @@
 import useModalClose from "../../hooks/useModalClose";
 import "./DeleteConfirmModal.css";
 
-function DeleteConfirmModal({ isOpen, onClose, onConfirm }) {
+function DeleteConfirmModal({ isOpen, onClose, onConfirm, buttonText }) {
   useModalClose(isOpen, onClose);
 
   return (
@@ -24,7 +24,7 @@ function DeleteConfirmModal({ isOpen, onClose, onConfirm }) {
           type="button"
           onClick={onConfirm}
         >
-          Yes, delete item
+          {buttonText}
         </button>
         <button
           className="confirm-modal__button confirm-modal__button_type_cancel"

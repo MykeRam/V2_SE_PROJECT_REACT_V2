@@ -25,6 +25,7 @@ function App() {
   const [clothingItems, setClothingItems] = useState([]);
   const [selectedCard, setSelectedCard] = useState(null);
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     getItems()
@@ -66,13 +67,17 @@ function App() {
   }
 
   function handleAddItemSubmit(newItem, resetForm) {
+    setIsLoading(true);
     addItem(newItem)
       .then((item) => {
         setClothingItems((prevItems) => [item, ...prevItems]);
         resetForm();
         handleCloseModal();
       })
-      .catch(console.error);
+      .catch(console.error)
+      .finally(() => {
+        setIsLoading(false);
+      });
   }
 
   function handleDeleteRequest(card) {
@@ -93,7 +98,13 @@ function App() {
       handleCloseModal();
     };
 
-    deleteItem(selectedCardId).then(removeItemFromState).catch(console.error);
+    setIsLoading(true);
+    deleteItem(selectedCardId)
+      .then(removeItemFromState)
+      .catch(console.error)
+      .finally(() => {
+        setIsLoading(false);
+      });
   }
 
   return (
@@ -137,6 +148,7 @@ function App() {
           isOpen={activeModal === "add-garment"}
           onAddItem={handleAddItemSubmit}
           onClose={handleCloseModal}
+          buttonText={isLoading ? "Adding..." : "Add garment"}
         />
 
         <ItemModal
@@ -150,6 +162,7 @@ function App() {
           isOpen={activeModal === "confirm-delete"}
           onConfirm={handleDeleteConfirm}
           onClose={handleCloseModal}
+          buttonText={isLoading ? "Deleting..." : "Yes, delete item"}
         />
       </CurrentTemperatureUnitContext.Provider>
     </div>

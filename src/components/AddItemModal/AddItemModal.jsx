@@ -20,7 +20,7 @@ function isValidImageUrl(url) {
   }
 }
 
-function AddItemModal({ isOpen, onAddItem, onClose }) {
+function AddItemModal({ isOpen, onAddItem, onClose, buttonText }) {
   const { values, handleChange, resetForm } = useForm(INITIAL_FORM_VALUES);
 
   useEffect(() => {
@@ -50,7 +50,7 @@ function AddItemModal({ isOpen, onAddItem, onClose }) {
     <ModalWithForm
       name="add-garment"
       title="New garment"
-      buttonText="Add garment"
+      buttonText={buttonText}
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
